@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  {{> _head}}
+</head>
+<body>
+  <main class="container">
+    <h1>Edit Frobulator</h1>
+    <form method="post" action="/frobulators" name="frobulator">
+      <input type="hidden" name="_method" value="put" />
+      {{#_csrf}}<input type="hidden" name="{{parameterName}}" value="{{token}}"/>{{/_csrf}}
+      <fieldset>
+        <legend>Frobulator properties</legend>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{frobulator.name}}"/>
+        </p>
+        <p>
+          <label for="select">Category</label>
+          <select id="select">
+              <optgroup label="Category">
+                  {{#categories}}
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                  {{/categories}}
+              </optgroup>
+          </select>
+        </p>
+      </fieldset>
+      <fieldset>
+        <button type="submit">Save Frobulator</button>
+      </fieldset>
+    </form>
+  </main>
+  {{> _foot}}
+</body>
+</html>

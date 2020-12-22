@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+  {{> _head}}
+</head>
+<body>
+  <main class="container xis-fluid">
+    <h1>Create new Frobulator</h1>
+    <form method="post" action="/frobulators" name="frobulator">
+      {{#_csrf}}<input type="hidden" name="{{parameterName}}" value="{{token}}"/>{{/_csrf}}
+      <fieldset>
+        <legend>Frobulator properties</legend>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autofocus/>
+        </p>
+        {{!<p>
+          <label for="select">Select</label>
+          <select id="select">
+              <optgroup label="Option Group">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+              </optgroup>
+          </select>
+        </p>}}
+      </fieldset>
+      <fieldset>
+        <button type="submit">Add Frobulator</button>
+      </fieldset>
+    </form>
+
+      {{!
+      <div class="uk-margin">
+        <label class="uk-form-label" for="category">Frobulation category</label>
+        <select class="uk-select">
+          <option selected="selected" disabled="disabled">Please select a category</option>
+          <option>Foo</option>
+          <option>Bar</option>
+          <option>Baz</option>
+        </select>
+      </div> }}
+  </main>
+  {{> _foot}}
+</body>
+</html>
