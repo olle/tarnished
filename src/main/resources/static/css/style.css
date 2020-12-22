@@ -1,0 +1,71 @@
+/* SETUP/RESET .------------------------------------------------------------- */
+
+:root {
+  --hiq-max-container-width: 64rem;
+  --hiq-border-radius: .14rem;
+  --hiq-base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 
+                          "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+                          "Fira Sans", "Droid Sans", "Helvetica Neue",
+                          sans-serif;
+  --hiq-button-horizontal-padding: 1.4rem;
+
+  --bg: #fafafa;
+  --bg-hover: rgba(123, 154, 255, 0.07);
+  --bg-even: hsla(226, 10%, 50%, 0.07);
+  --fg: rgba(0, 0, 0, 0.8);
+  --fg-light: rgba(0, 0, 0, 0.4);
+  --link: rgba(50, 121, 187, 0.925);
+  --link-high-contrast: rgba(50, 121, 187, 1);
+  --panel: #fff;
+  --border: 1px solid rgba(182, 182, 182, 0.424);
+  --success: hsl(157, 30%, 53%);
+  --warning: hsl(37, 100%, 55%);
+  --error: #fc4979;
+  --bold: 600;
+  --thin: 400;
+  --bold-letter-spacing: 0.1rem;
+  --radius: 4px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  fill: var(--fg);
+  margin: 0;
+  font-size: 130%;
+  overflow-x: scroll;
+}
+
+/* LAYOUT ------------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  padding: 1rem;
+}
+
+/* ICONS -------------------------------------------------------------------- */
+
+a > .icon-tabler {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
+.icon-tabler {
+  stroke-width: 2.1;
+}
+
+/* FROBULATOR LIST ---------------------------------------------------------- */
+
+.frobulator-list > li:not(:first-child) {
+  margin-top: .5rem;
+}
+.frobulator-entry {
+  display: flex;
+}
+.frobulator-entry > * {
+  flex: 1;
+}

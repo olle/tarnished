@@ -1,0 +1,76 @@
+##
+## The defaults, applied to any profile or configuration, but may have neat
+## overrides in other profiles, or be injected from the runtime environment -
+## yeah, do that.
+##
+spring:
+  profiles:
+    # ABNTD - Always Be Nice To Developers! So we enforce a not-so-awkward,
+    # dev-first principle, meaning the default profile is an explicit local
+    # everything profile, where we can use Docker or in-memory resources to
+    # provide a setup that just-works. Great!
+    active: localhost
+  application:
+    name: tarnished
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  mustache:
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    expose-request-attributes: true
+  jpa:
+    ## One can argue that... NAHHH, shut up and sit down in the boat. The
+    ## main purpose of not opening a session in view, is that real enterprise
+    ## solutions, should be able to tell _how_ and _where_ there are session
+    ## and transaction boundaries. Nough said!
+    open-in-view: true
+  datasource:
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 200000
+      max-lifetime: 600000
+##
+## Properties that ensure a smooth ride for a run-local-mode. Didn't you read
+## the rant above?
+##
+---
+spring:
+  config:
+    activate:
+      on-profile: localhost
+  mustache:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: PT0S
+  messages:
+    cache-duration: PT0S
+  datasource:
+    url: jdbc:mariadb://localhost:3306/varnished?useUnicode=yes&characterEncoding=utf8
+    username: root
+    hikari:
+      connection-init-sql: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;"
+  flyway:
+    schemas: ${spring.application.name}
+    baseline-on-migrate: true
+  task:
+    execution:
+      pool:
+        max-size: 11
+  jmx:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+management:
+  endpoint:
+    health:
+      show-details: when-authorized
+      roles: ADMIN, DEVELOPER
+logging:
+  level:
+    ## Yeah, you'll thank me later!
+    com.studiomediatech.example.tarnished: DEBUG
