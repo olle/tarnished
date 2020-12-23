@@ -1,4 +1,4 @@
-package com.studiomediatech.examples.tarnished.app;
+package com.studiomediatech.examples.tarnished;
 
 import java.util.List;
 
