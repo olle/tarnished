@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiRestController {
 
+	private final FrobulatorService frobulatorService;
+
+	public ApiRestController(FrobulatorService frobulatorService) {
+		this.frobulatorService = frobulatorService;
+	}
+
 	public static final Function<String, Link> API = rel -> linkTo(methodOn(ApiRestController.class).api())
 			.withRel(rel);
 
@@ -40,7 +46,7 @@ public class ApiRestController {
 	@GetMapping("/api/v1/frobulators")
 	public Map<String, Object> frobulators() {
 
-		return Collections.singletonMap("hello", "world!");
+		return Collections.singletonMap("frobulators", frobulatorService.listFrobulators());
 	}
 
 }
