@@ -7,8 +7,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,8 +48,8 @@ public class ApiRestController {
 
 	@GetMapping("/api/v1/frobulators")
 	public Map<String, Object> frobulators() {
-
-		return Collections.singletonMap("frobulators", frobulatorService.listFrobulators());
+		return Collections.singletonMap("frobulators", CollectionModel.of(frobulatorService.listFrobulators().stream().map(RepresentationModel::of)
+				.collect(Collectors.toList())));
 	}
 
 }
